@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-class Timer extends Component {
+class Timer extends PureComponent {
   constructor() {
     super();
     this.timer = React.createRef();
@@ -10,7 +10,19 @@ class Timer extends Component {
     };
   }
 
-  //Your code here
+  // Display new timer background color on every render
+  componentDidUpdate() {
+    this.timer.current.style.background = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  }
+
+  // No longer needed when using PureComponent
+    // Only update component on timer increment
+    // shouldComponentUpdate(nextProps, nextState) {
+    //   if (this.state.time === nextState.time) {
+    //     return false
+    //   }
+    //   return true
+    // }
 
   componentDidMount() {
     this.interval = setInterval(
